@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 20th Birthday</title>
+<style>
+  :root{
+    --black:#0b0a0a;
+    --black-2:#151313;
+    --crimson:#c41e3a;
+    --ember:#ff4d4d;
+    --gold:#d4a657;
+    --cream:#efe7df;
+    --line: rgba(212,166,87,0.25);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 50% 0%, #1d1414 0%, var(--black) 55%),
+      var(--black);
+    color:var(--cream);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow-x:hidden;
+    padding:24px 16px;
+  }
+
+  .scene{
+    width:100%;
+    max-width:420px;
+    text-align:center;
+    position:relative;
+  }
+
+  /* ---- Embers background ---- */
+  .ember{
+    position:fixed;
+    bottom:-10px;
+    width:4px;
+    height:4px;
+    background:var(--ember);
+    border-radius:50%;
+    opacity:0.7;
+    filter:blur(0.5px);
+    animation:rise linear infinite;
+    pointer-events:none;
+  }
+  @keyframes rise{
+    0%{ transform:translateY(0) translateX(0); opacity:0;}
+    10%{opacity:0.8;}
+    100%{ transform:translateY(-100vh) translateX(20px); opacity:0;}
+  }
+
+  /* ---- Headline ---- */
+  .eyebrow{
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:11px;
+    color:var(--gold);
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    margin-bottom:14px;
+    opacity:0;
+    animation:fadeIn 1s ease forwards;
+  }
+
+  h1{
+    font-size:clamp(34px, 9vw, 52px);
+    line-height:1.05;
+    font-weight:700;
+    color:var(--cream);
+    margin-bottom:6px;
+    opacity:0;
+    animation:fadeIn 1s ease 0.2s forwards;
+  }
+  h1 span{
+    color:var(--crimson);
+    font-style:italic;
+  }
+
+  .subtitle{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:14px;
+    color:#b7a99a;
+    margin-bottom:36px;
+    opacity:0;
+    animation:fadeIn 1s ease 0.4s forwards;
+  }
+
+  @keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  /* ---- Cake ---- */
+  .cake-wrap{
+    position:relative;
+    width:220px;
+    height:230px;
+    margin:0 auto 28px;
+  }
+
+  .plate{
+    position:absolute;
+    bottom:6px;
+    left:50%;
+    transform:translateX(-50%);
+    width:200px;
+    height:14px;
+    background:radial-gradient(ellipse at center, #2a2222 0%, transparent 70%);
+    border-radius:50%;
+  }
+
+  .cake{
+    position:absolute;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:170px;
+  }
+
+  .tier{
+    position:relative;
+    width:100%;
+    border-radius:6px;
+    background: linear-gradient(180deg, var(--crimson) 0%, #8e1428 100%);
+    box-shadow: inset 0 -8px 14px rgba(0,0,0,0.35), 0 6px 10px rgba(0,0,0,0.4);
+  }
+  .tier.bottom{ height:62px; }
+  .tier.top{
+    width:120px;
+    height:48px;
+    margin:0 auto;
+    background: linear-gradient(180deg, #d22b48 0%, var(--crimson) 100%);
+  }
+  .drip{
+    position:absolute;
+    top:-1px; left:0; right:0;
+    height:14px;
+    background:
+      radial-gradient(circle at 10% 0%, var(--gold) 0 6px, transparent 7px),
+      radial-gradient(circle at 30% 0%, var(--gold) 0 5px, transparent 6px),
+      radial-gradient(circle at 55% 0%, var(--gold) 0 7px, transparent 8px),
+      radial-gradient(circle at 78% 0%, var(--gold) 0 5px, transparent 6px),
+      radial-gradient(circle at 95% 0%, var(--gold) 0 6px, transparent 7px);
+    opacity:0.9;
+  }
+
+  .candles{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    position:relative;
+    height:60px;
+    margin-bottom:-4px;
+  }
+
+  .candle{
+    width:6px;
+    height:38px;
+    background: linear-gradient(180deg, var(--gold), #a87d3a);
+    border-radius:2px;
+    position:relative;
+  }
+
+  .flame{
+    position:absolute;
+    top:-22px;
+    left:50%;
+    transform:translateX(-50%);
+    width:12px;
+    height:20px;
+    background: radial-gradient(circle at 50% 30%, #fff6cf 0%, var(--gold) 35%, var(--ember) 70%, transparent 75%);
+    border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flicker 1.1s ease-in-out infinite alternate;
+    transform-origin:bottom center;
+  }
+  @keyframes flicker{
+    0%{ transform:translateX(-50%) rotate(-3deg) scaleY(1); }
+    50%{ transform:translateX(-50%) rotate(2deg) scaleY(1.08); }
+    100%{ transform:translateX(-50%) rotate(-2deg) scaleY(0.96); }
+  }
+
+  .smoke{
+    position:absolute;
+    top:-24px;
+    left:50%;
+    transform:translateX(-50%);
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:rgba(200,200,200,0.5);
+    opacity:0;
+    pointer-events:none;
+  }
+  .blown .flame{ display:none; }
+  .blown .smoke{ animation: smokeRise 1.4s ease-out forwards; }
+  @keyframes smokeRise{
+    0%{ opacity:0.6; transform:translate(-50%,0) scale(1);}
+    100%{ opacity:0; transform:translate(-50%,-40px) scale(2.4);}
+  }
+
+  /* ---- Buttons / Controls ---- */
+  .btn{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    background:transparent;
+    color:var(--cream);
+    border:1px solid var(--gold);
+    padding:14px 28px;
+    border-radius:999px;
+    cursor:pointer;
+    transition: all 0.3s ease;
+  }
+  .btn:hover{ background:var(--gold); color:var(--black); }
+  .btn:active{ transform:scale(0.97); }
+
+  .stage{ display:none; }
+  .stage.active{ display:block; animation:fadeIn 0.6s ease forwards; }
+
+  .wish-box{
+    margin-top:8px;
+  }
+  .wish-box p{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:13px;
+    color:#b7a99a;
+    margin-bottom:14px;
+    letter-spacing:0.04em;
+  }
+
+  textarea{
+    width:100%;
+    min-height:110px;
+    background:var(--black-2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    color:var(--cream);
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:15px;
+    padding:14px;
+    resize:vertical;
+    outline:none;
+  }
+  textarea:focus{ border-color:var(--crimson); }
+  textarea::placeholder{ color:#7a6c5e; }
+
+  .send-row{
+    margin-top:16px;
+    display:flex;
+    justify-content:center;
+  }
+
+  .footnote{
+    margin-top:28px;
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:#6b5e51;
+  }
+
+  .thankyou{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:15px;
+    color:var(--gold);
+    line-height:1.6;
+  }
+
+  .closing{
+    position:relative;
+    padding:20px 0 10px;
+  }
+  .closing-line{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    opacity:0;
+    transform:translateY(14px);
+    animation: closeIn 0.8s ease forwards;
+  }
+  .line1{
+    font-size:clamp(20px,6vw,26px);
+    letter-spacing:0.08em;
+    color:var(--cream);
+    animation-delay:0.1s;
+  }
+  .line2 span{
+    font-size:clamp(34px,11vw,54px);
+    font-family:'Georgia', serif;
+    font-style:italic;
+    color:var(--crimson);
+    display:inline-block;
+    margin:4px 0 18px;
+    animation-delay:0.5s;
+  }
+  .line2{ animation-delay:0.5s; }
+  .line3{
+    font-size:16px;
+    color:var(--gold);
+    letter-spacing:0.05em;
+    margin-bottom:18px;
+    animation-delay:0.95s;
+  }
+  .line4{
+    font-size:13px;
+    color:#cdbfae;
+    margin-bottom:6px;
+    animation-delay:1.3s;
+  }
+  .line5{
+    font-size:13px;
+    color:#cdbfae;
+    animation-delay:1.65s;
+  }
+  @keyframes closeIn{
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .hearts{
+    position:relative;
+    height:0;
+  }
+  .heart{
+    position:absolute;
+    bottom:0;
+    font-size:14px;
+    color:var(--crimson);
+    opacity:0;
+    animation: heartRise 3.2s ease-in forwards;
+    pointer-events:none;
+  }
+  @keyframes heartRise{
+    0%{ opacity:0; transform:translateY(0) scale(0.6); }
+    15%{ opacity:0.9; }
+    100%{ opacity:0; transform:translateY(-160px) scale(1.1); }
+  }
+
+  .hidden{ display:none !important; }
+</style>
+</head>
+<body>
+
+<div class="scene">
+
+  <div class="eyebrow">A small fire, just for you, Aftha</div>
+  <h1>Happy 20th<br><span>Birthday</span></h1>
+  <p class="subtitle">one more year of you, panda, and I'm grateful for every bit of it</p>
+
+  <!-- STAGE 1: CAKE -->
+  <div id="stage-cake" class="stage active">
+    <div class="cake-wrap">
+      <div class="candles" id="candles">
+        <div class="candle"><div class="flame"></div><div class="smoke"></div></div>
+        <div class="candle"><div class="flame"></div><div class="smoke"></div></div>
+        <div class="candle"><div class="flame"></div><div class="smoke"></div></div>
+      </div>
+      <div class="cake">
+        <div class="tier top"><div class="drip"></div></div>
+        <div class="tier bottom" style="margin-top:4px;"><div class="drip"></div></div>
+      </div>
+      <div class="plate"></div>
+    </div>
+
+    <button class="btn" id="blowBtn">Blow the candles</button>
+  </div>
+
+  <!-- STAGE 2: WISH FORM -->
+  <div id="stage-wish" class="stage">
+    <div class="wish-box">
+      <p>Make a wish, panda. I'll be the one who reads it.</p>
+      <form id="wishForm">
+        <textarea id="wishText" name="message" placeholder="Type your wish here..." required></textarea>
+        <input type="hidden" name="_subject" value="A birthday wish for you 🕯️">
+        <div class="send-row">
+          <button type="submit" class="btn">Send my wish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- STAGE 3: SECOND MESSAGE -->
+  <div id="stage-note" class="stage">
+    <div class="wish-box">
+      <p>Is there something you want to tell me?</p>
+      <form id="noteForm">
+        <textarea id="noteText" name="message" placeholder="Tell me anything..." required></textarea>
+        <input type="hidden" name="_subject" value="Something he wanted to tell me 💌">
+        <div class="send-row">
+          <button type="submit" class="btn">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- STAGE 4: CLOSING ANIMATION -->
+  <div id="stage-thanks" class="stage">
+    <div class="closing">
+      <p class="closing-line line1">HAPPIEST BIRTHDAY,</p>
+      <p class="closing-line line2"><span>MY PANDA</span></p>
+      <p class="closing-line line3">wish you the bessttttt 🤍</p>
+      <p class="closing-line line4">twenty years of you existing, and somehow I still feel lucky every single day that I get to know you, Aftha</p>
+      <p class="closing-line line5">thank you for being the softest place I always come back to.</p>
+      <p class="closing-line line5">Happy birthday, my panda. I love you more than these words could ever hold.</p>
+      <div class="hearts" id="hearts"></div>
+    </div>
+  </div>
+
+  <div class="footnote">made with love, for your 20th</div>
+</div>
+
+<script>
+  // Floating embers
+  const body = document.body;
+  for(let i=0;i<18;i++){
+    const e = document.createElement('div');
+    e.className='ember';
+    e.style.left = Math.random()*100+'vw';
+    e.style.animationDuration = (4+Math.random()*4)+'s';
+    e.style.animationDelay = (Math.random()*5)+'s';
+    body.appendChild(e);
+  }
+
+  const blowBtn = document.getElementById('blowBtn');
+  const candles = document.getElementById('candles');
+  const stageCake = document.getElementById('stage-cake');
+  const stageWish = document.getElementById('stage-wish');
+  const stageNote = document.getElementById('stage-note');
+  const stageThanks = document.getElementById('stage-thanks');
+  const wishForm = document.getElementById('wishForm');
+  const noteForm = document.getElementById('noteForm');
+
+  blowBtn.addEventListener('click', () => {
+    candles.classList.add('blown');
+    blowBtn.disabled = true;
+    blowBtn.style.opacity = '0.5';
+    setTimeout(() => {
+      stageCake.classList.remove('active');
+      stageWish.classList.add('active');
+    }, 900);
+  });
+
+  async function sendForm(form, endpoint){
+    const formData = new FormData(form);
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+    if(!response.ok) throw new Error('Send failed');
+  }
+
+  wishForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = wishForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      await sendForm(wishForm, 'https://formspree.io/f/mpqgjyvq');
+      stageWish.classList.remove('active');
+      stageNote.classList.add('active');
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send my wish';
+      alert('Something went wrong sending your wish. Please try again.');
+    }
+  });
+
+  noteForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = noteForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      await sendForm(noteForm, 'https://formspree.io/f/mpqgjyvq');
+      stageNote.classList.remove('active');
+      stageThanks.classList.add('active');
+      launchHearts();
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send';
+      alert('Something went wrong sending that. Please try again.');
+    }
+  });
+
+  function launchHearts(){
+    const container = document.getElementById('hearts');
+    const symbols = ['🤍','♥','✦'];
+    for(let i=0;i<14;i++){
+      const h = document.createElement('span');
+      h.className='heart';
+      h.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+      h.style.left = (10 + Math.random()*80) + '%';
+      h.style.animationDelay = (Math.random()*1.5) + 's';
+      h.style.fontSize = (12 + Math.random()*10) + 'px';
+      container.appendChild(h);
+    }
+  }
+</script>
+
+</body>
+</html>
